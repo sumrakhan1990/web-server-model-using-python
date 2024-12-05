@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Multi-Threaded Lightweight HTTP Server</title>
+    <style>
+      /* Reset and base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Arial", sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f8f8f8;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      /* Header styles */
+      header {
+        background-color: #ff3333;
+        color: white;
+        padding: 20px 0;
+        text-align: center;
+      }
+
+      header h1 {
+        font-size: 2.5rem;
+        margin-bottom: 10px;
+        animation: fadeInDown 1s ease-out;
+      }
+
+      header p {
+        font-size: 1.2rem;
+        animation: fadeInUp 1s ease-out;
+      }
+
+      /* Section styles */
+      section {
+        padding: 60px 0;
+      }
+
+      section h2 {
+        font-size: 2rem;
+        margin-bottom: 30px;
+        text-align: center;
+        color: #ff3333;
+      }
+
+      /* About section */
+      .about {
+        background-color: white;
+        text-align: center;
+      }
+
+      .about-content {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .about-text {
+        flex: 1;
+        min-width: 300px;
+        padding: 20px;
+      }
+
+      .about-icon {
+        font-size: 5rem;
+        color: #ff3333;
+        animation: pulse 2s infinite;
+      }
+
+      /* Features section */
+      .features {
+        background-color: #f8f8f8;
+      }
+
+      .feature-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 30px;
+      }
+
+      .feature-item {
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        text-align: center;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+      }
+
+      .feature-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        color: #ff3333;
+        margin-bottom: 20px;
+      }
+
+      /* How It Works section */
+      .how-it-works {
+        background-color: white;
+      }
+
+      .workflow {
+        display: flex;
+        justify-content: space-around;
+        align-items: flex-start;
+        flex-wrap: wrap;
+      }
+
+      .workflow-step {
+        text-align: center;
+        margin: 20px;
+        flex: 1;
+        min-width: 200px;
+        max-width: 250px;
+      }
+
+      .workflow-icon {
+        font-size: 2.5rem;
+        color: #ff3333;
+        margin-bottom: 10px;
+      }
+
+      .workflow-step h3 {
+        margin-bottom: 10px;
+        color: #ff3333;
+      }
+
+      .workflow-step p {
+        font-size: 0.9rem;
+      }
+
+      /* Performance Metrics section */
+      .performance {
+        background-color: #f8f8f8;
+      }
+
+      .metrics-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+      }
+
+      .metric-item {
+        background-color: white;
+        padding: 20px;
+        border-radius: 10px;
+        text-align: center;
+      }
+
+      .metric-value {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #ff3333;
+        margin-bottom: 10px;
+      }
+
+      .metrics-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 30px;
+        background-color: white;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      }
+
+      .metrics-table th,
+      .metrics-table td {
+        padding: 12px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+      }
+
+      .metrics-table th {
+        background-color: #ff3333;
+        color: white;
+      }
+
+      .metrics-table tr:nth-child(even) {
+        background-color: #f2f2f2;
+      }
+
+      .metrics-table tr:hover {
+        background-color: #ddd;
+      }
+
+      /* Team section */
+      .team {
+        background-color: white;
+      }
+
+      .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 30px;
+      }
+
+      .team-member {
+        text-align: center;
+      }
+
+      .team-member img {
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-bottom: 15px;
+      }
+
+      /* Footer styles */
+      footer {
+        background-color: #333;
+        color: white;
+        padding: 40px 0;
+        text-align: center;
+      }
+
+      footer a {
+        color: #ff3333;
+        text-decoration: none;
+      }
+
+      footer a:hover {
+        text-decoration: underline;
+      }
+
+      /* Animations */
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(20px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.1);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      /* Responsive design */
+      @media (max-width: 768px) {
+        header h1 {
+          font-size: 2rem;
+        }
+
+        header p {
+          font-size: 1rem;
+        }
+
+        section h2 {
+          font-size: 1.8rem;
+        }
+
+        .feature-grid,
+        .metrics-grid,
+        .team-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .metrics-table {
+          font-size: 0.8rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container">
+        <h1>Multi-Threaded Lightweight HTTP Server</h1>
+        <p>Efficient, Reliable, and Lightweight.</p>
+      </div>
+    </header>
+
+    <main>
+      <section class="about">
+        <div class="container">
+          <h2>About Our Project</h2>
+          <div class="about-content">
+            <div class="about-text">
+              <p>
+                Our Multi-Threaded Lightweight HTTP Server is designed for efficiency and reliability. It offers static
+                file serving, multithreading for concurrent requests, request queuing, caching for performance
+                optimization, and comprehensive metrics tracking.
+              </p>
+            </div>
+            <div class="about-icon">
+              <i class="fas fa-server"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="features">
+        <div class="container">
+          <h2>Key Features</h2>
+          <div class="feature-grid">
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-network-wired"></i>
+              </div>
+              <h3>Multithreading</h3>
+              <p>Handle multiple requests concurrently, improving server performance and responsiveness.</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-database"></i>
+              </div>
+              <h3>Caching</h3>
+              <p>Optimize performance with intelligent caching mechanisms for frequently accessed resources.</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-chart-line"></i>
+              </div>
+              <h3>Metrics Logging</h3>
+              <p>Comprehensive logging of server metrics for monitoring and performance analysis.</p>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon">
+                <i class="fas fa-cogs"></i>
+              </div>
+              <h3>Request Handling</h3>
+              <p>Efficient processing of incoming requests with advanced queuing and prioritization.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="how-it-works">
+        <div class="container">
+          <h2>How It Works</h2>
+          <div class="workflow">
+            <div class="workflow-step">
+              <div class="workflow-icon">
+                <i class="fas fa-arrow-right"></i>
+              </div>
+              <h3>Accept Requests</h3>
+              <p>The server listens for incoming HTTP requests on a specified port.</p>
+            </div>
+            <div class="workflow-step">
+              <div class="workflow-icon">
+                <i class="fas fa-random"></i>
+              </div>
+              <h3>Handle with Threads</h3>
+              <p>Requests are distributed to a pool of worker threads for concurrent processing.</p>
+            </div>
+            <div class="workflow-step">
+              <div class="workflow-icon">
+                <i class="fas fa-file-alt"></i>
+              </div>
+              <h3>Serve Files</h3>
+              <p>Static files are efficiently served from the server's file system or cache.</p>
+            </div>
+            <div class="workflow-step">
+              <div class="workflow-icon">
+                <i class="fas fa-clipboard-list"></i>
+              </div>
+              <h3>Log Activity</h3>
+              <p>Detailed logs are generated for each request, including performance metrics.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="performance">
+        <div class="container">
+          <h2>Performance Metrics</h2>
+          <div class="metrics-grid">
+            <div class="metric-item">
+              <div class="metric-value" id="successRate">0%</div>
+              <p>Success Rate</p>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value" id="rejectedRequests">0</div>
+              <p>Rejected Requests</p>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value" id="avgResponseTime">0ms</div>
+              <p>Avg. Response Time</p>
+            </div>
+            <div class="metric-item">
+              <div class="metric-value" id="peakConcurrency">0</div>
+              <p>Peak Concurrency</p>
+            </div>
+          </div>
+          <h3>Metrics Summary</h3>
+          <table class="metrics-table">
+            <thead>
+              <tr>
+                <th>Test Case</th>
+                <th>Requests</th>
+                <th>Success</th>
+                <th>Failed</th>
+                <th>Rejected</th>
+                <th>Avg. Response Time (s)</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>Normal Load</td>
+                <td>100</td>
+                <td>100</td>
+                <td>0</td>
+                <td>0</td>
+                <td>0.02</td>
+              </tr>
+              <tr>
+                <td>High Load (Queue Full)</td>
+                <td>500</td>
+                <td>480</td>
+                <td>0</td>
+                <td>20</td>
+                <td>0.10</td>
+              </tr>
+              <tr>
+                <td>Failure Simulation</td>
+                <td>100</td>
+                <td>50</td>
+                <td>30</td>
+                <td>20</td>
+                <td>0.05</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section class="team">
+        <div class="container">
+          <h2>Our Team</h2>
+          <div class="team-grid">
+            <div class="team-member">
+              <img src="https://via.placeholder.com/150" alt="Team Member 1" />
+              <h3>M Maaz</h3>
+            </div>
+            <div class="team-member">
+              <img src="https://via.placeholder.com/150" alt="Team Member 2" />
+              <h3>Bilal Jawaid</h3>
+            </div>
+            <div class="team-member">
+              <img src="https://via.placeholder.com/150" alt="Team Member 3" />
+              <h3>Zeeshan Ahmed</h3>
+            </div>
+            <div class="team-member">
+              <img src="https://via.placeholder.com/150" alt="Team Member 4" />
+              <h3>Sheikh Humza</h3>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2024 Multi-Threaded Lightweight HTTP Server Project. All rights reserved.</p>
+        <p>
+          <a href="#">Documentation</a> | <a href="#">GitHub Repository</a> |
+          <a href="#">Contact Us</a>
+        </p>
+      </div>
+    </footer>
+
+    <script src="https://kit.fontawesome.com/your-fontawesome-kit.js" crossorigin="anonymous"></script>
+    <script>
+      // Simulated performance metrics animation
+      function animateMetric(elementId, finalValue, unit = "") {
+        let currentValue = 0;
+        const element = document.getElementById(elementId);
+        const duration = 2000; // Animation duration in milliseconds
+        const interval = 20; // Update interval in milliseconds
+        const steps = duration / interval;
+        const increment = finalValue / steps;
+
+        const animation = setInterval(() => {
+          currentValue += increment;
+          if (currentValue >= finalValue) {
+            clearInterval(animation);
+            currentValue = finalValue;
+          }
+          element.textContent = Math.round(currentValue) + unit;
+        }, interval);
+      }
+
+      // Start animations when the page loads
+      window.addEventListener("load", () => {
+        animateMetric("successRate", 99.9, "%");
+        animateMetric("rejectedRequests", 12);
+        animateMetric("avgResponseTime", 45, "ms");
+        animateMetric("peakConcurrency", 1000);
+      });
+    </script>
+  </body>
+</html>

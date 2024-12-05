@@ -1,0 +1,75 @@
+2024-11-26 00:12:46,819 - INFO - Server started at http://127.0.0.1:8080
+2024-11-26 00:12:51,115 - INFO - Connection accepted from ('127.0.0.1', 57729)
+2024-11-26 00:12:51,116 - INFO - 200 OK: static\index.html
+2024-11-26 00:12:55,275 - INFO - Connection accepted from ('127.0.0.1', 57731)
+2024-11-26 00:12:55,275 - INFO - 200 OK: static\index.html
+2024-11-26 00:12:56,872 - INFO - Connection accepted from ('127.0.0.1', 57732)
+2024-11-26 00:12:56,872 - INFO - 200 OK: static\index.html
+2024-11-26 00:34:13,497 - INFO - Server started at http://127.0.0.1:8080
+2024-11-26 00:34:13,513 - INFO - Server IP: 192.168.1.109, Port: 8080
+2024-11-26 00:34:34,704 - INFO - Server started at http://127.0.0.1:8080
+2024-11-26 00:34:34,711 - INFO - Server IP: 192.168.1.109, Port: 8080
+2024-11-26 00:39:01,347 - INFO - Server started at http://127.0.0.1:8080
+2024-11-26 00:39:01,359 - INFO - Server IP: 192.168.1.109, Port: 8080
+2024-11-26 00:39:31,369 - INFO - Connection accepted from ('127.0.0.1', 58199)
+2024-11-26 00:39:31,370 - INFO - 200 OK: static\index.html
+2024-11-26 00:42:04,571 - INFO - Server started at http://127.0.0.2:8080
+2024-11-26 00:42:04,581 - INFO - Server IP: 192.168.1.109, Port: 8080
+2024-11-26 00:42:12,666 - INFO - Connection accepted from ('127.0.0.1', 58220)
+2024-11-26 00:42:12,670 - INFO - 200 OK: static\index.html
+2024-11-26 00:42:30,697 - INFO - Server started at http://127.0.0.1:8080
+2024-11-26 00:42:30,706 - INFO - Server IP: 192.168.1.109, Port: 8080
+2024-11-26 01:34:09,793 - INFO - Connection accepted from ('127.0.0.1', 58646)
+2024-11-26 01:34:09,796 - INFO - 200 OK: static\index.html
+2024-11-26 09:41:44,626 - INFO - Server started at http://127.0.0.1:8080
+2024-11-26 09:41:50,341 - INFO - Connection accepted from ('127.0.0.1', 61196)
+2024-11-26 09:41:50,342 - INFO - 200 OK: static\index.html
+2024-11-26 09:43:06,569 - INFO - Connection accepted from ('127.0.0.1', 61357)
+2024-11-26 09:43:06,589 - INFO - 200 OK: static\test.jpeg
+2024-11-26 09:44:33,638 - INFO - Connection accepted from ('127.0.0.1', 61402)
+2024-11-26 09:44:33,638 - INFO - 404 Not Found: static\shu.jpeg
+2024-11-26 09:44:42,234 - INFO - Connection accepted from ('127.0.0.1', 61412)
+2024-11-26 09:44:42,244 - INFO - 200 OK: static\shu.jpg
+2024-11-26 09:49:06,727 - INFO - Server shutting down...
+2024-11-26 09:49:06,727 - INFO - Server stopped.
+2024-11-26 10:06:23,379 - INFO - Server started at http://127.0.0.1:8080
+2024-11-26 10:06:32,397 - INFO - Connection accepted from ('127.0.0.1', 61989)
+2024-11-26 10:06:32,442 - INFO - 200 OK: static\index.html
+2024-11-26 10:06:51,249 - INFO - Connection accepted from ('127.0.0.1', 61991)
+2024-11-26 10:06:51,249 - INFO - 200 OK: static\index.html
+2024-11-26 10:10:19,167 - INFO - Connection accepted from ('127.0.0.1', 62022)
+2024-11-26 10:10:19,167 - INFO - 200 OK: static\index.html
+2024-11-26 10:10:19,828 - INFO - Connection accepted from ('127.0.0.1', 62024)
+2024-11-26 10:10:19,829 - INFO - 404 Not Found: static\favicon.ico
+2024-11-26 10:10:24,443 - INFO - Connection accepted from ('127.0.0.1', 62027)
+2024-11-26 10:10:24,443 - INFO - 200 OK: static\index.html
+2024-11-26 10:10:24,864 - INFO - Connection accepted from ('127.0.0.1', 62028)
+2024-11-26 10:10:24,864 - INFO - 404 Not Found: static\favicon.ico
+2024-11-26 10:10:41,798 - INFO - Server started at http://127.0.0.1:8080
+2024-11-26 10:10:46,466 - INFO - Connection accepted from ('127.0.0.1', 62035)
+2024-11-26 10:10:46,499 - INFO - 200 OK: static\index.html
+2024-11-26 10:10:46,936 - INFO - Connection accepted from ('127.0.0.1', 62038)
+2024-11-26 10:24:11,749 - INFO - Connection accepted from ('127.0.0.1', 62862)
+2024-11-26 10:24:11,753 - INFO - 200 OK: static\index.html
+2024-11-26 10:24:13,121 - INFO - Connection accepted from ('127.0.0.1', 62864)
+2024-11-26 10:24:21,492 - INFO - Connection accepted from ('127.0.0.1', 62866)
+2024-11-26 10:24:21,494 - INFO - 200 OK: static\index.html
+2024-11-26 10:24:21,982 - INFO - Connection accepted from ('127.0.0.1', 62867)
+2024-11-26 10:24:21,983 - INFO - 404 Not Found: static\favicon.ico
+2024-11-26 10:24:36,923 - INFO - Connection accepted from ('127.0.0.1', 62870)
+2024-11-26 10:24:36,985 - INFO - 200 OK: static\shu.jpg
+2024-11-26 10:24:37,112 - INFO - Connection accepted from ('127.0.0.1', 62871)
+2024-11-26 10:24:37,113 - INFO - 404 Not Found: static\favicon.ico
+2024-11-26 10:24:47,595 - INFO - Connection accepted from ('127.0.0.1', 62872)
+2024-11-26 10:24:47,630 - INFO - 200 OK: static\test.jpeg
+2024-11-26 10:25:16,407 - INFO - Server started at http://127.0.0.1:8080
+2024-11-26 10:25:18,687 - INFO - Connection accepted from ('127.0.0.1', 62886)
+2024-11-26 10:25:18,690 - INFO - 200 OK: static\test.jpeg
+2024-11-26 10:25:19,450 - INFO - Connection accepted from ('127.0.0.1', 62887)
+2024-11-26 10:31:56,147 - INFO - Server shutting down...
+2024-11-26 10:31:56,150 - INFO - Server stopped.
+2024-11-26 10:32:04,822 - INFO - Server started at http://127.0.0.1:8080
+2024-11-26 10:32:07,188 - INFO - Connection accepted from ('127.0.0.1', 62977)
+2024-11-26 10:32:07,358 - INFO - 200 OK: static\index.html
+2024-11-26 10:32:08,525 - INFO - Connection accepted from ('127.0.0.1', 62979)
+2024-11-26 10:32:08,527 - INFO - 404 Not Found: static\favicon.ico
